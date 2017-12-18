@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.batata</groupId>
+	<artifactId>dualDb</artifactId>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
+
+	<name>dualDb</name>
+	<description>Demo project dual db usage</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.9.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<!--dabase configuration -test with flyway-->
+		<!--<mysql.datasource.url>jdbc:mysql://localhost:3306/batata?createDatabaseIfNotExist=true&amp;serverTimezone=UTC</mysql.datasource.url>-->
+		<!--<mysql.datasource.username>root</mysql.datasource.username>-->
+		<!--<mysql.datasource.password>admin</mysql.datasource.password>-->
+		<!--<h2.datasource.url>jdbc:h2:mem:testdb</h2.datasource.url>-->
+		<!--<h2.datasource.username>sa</h2.datasource.username>-->
+
+	</properties>
+
+	<dependencies>
+		<!--spring boot dependencies-->
+		<!--spring web-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!--spring jpa-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<!--spring jdbc-->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+		<!--actuator-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-actuator-docs</artifactId>
+		</dependency>
+		<!--log actuator endpoint-->
+		<dependency>
+			<groupId>eu.hinsch</groupId>
+			<artifactId>spring-boot-actuator-logview</artifactId>
+			<version>0.2.12</version>
+		</dependency>
+		<!--h2 database-->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!--mysql database-->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>6.0.6</version>
+		</dependency>
+		<!--flyway-->
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+		</dependency>
+		<!--test-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<!--<plugin>-->
+				<!--<groupId>org.flywaydb</groupId>-->
+				<!--<artifactId>flyway-maven-plugin</artifactId>-->
+				<!--<executions>-->
+					<!--<execution>-->
+						<!--<id>h2</id>-->
+						<!--<phase>compile</phase>-->
+						<!--<goals>-->
+							<!--<goal>migrate</goal>-->
+						<!--</goals>-->
+						<!--<configuration>-->
+							<!--<url>${h2.datasource.url}</url>-->
+							<!--<user>${h2.datasource.username}</user>-->
+							<!--<locations>-->
+								<!--<location>-->
+									<!--classpath:/db/migration/h2-->
+								<!--</location>-->
+							<!--</locations>-->
+						<!--</configuration>-->
+					<!--</execution>-->
+					<!--<execution>-->
+						<!--<id>mysql</id>-->
+						<!--<phase>compile</phase>-->
+						<!--<goals>-->
+							<!--<goal>migrate</goal>-->
+						<!--</goals>-->
+						<!--<configuration>-->
+							<!--<url>${mysql.datasource.url}</url>-->
+							<!--<user>${mysql.datasource.username}</user>-->
+							<!--<password>${mysql.datasource.password}</password>-->
+							<!--<locations>-->
+								<!--<location>-->
+									<!--classpath:/db/migration/mysql-->
+								<!--</location>-->
+							<!--</locations>-->
+						<!--</configuration>-->
+					<!--</execution>-->
+				<!--</executions>-->
+			<!--</plugin>-->
+			<!---->
+		</plugins>
+	</build>
+
+</project>
