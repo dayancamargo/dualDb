@@ -42,7 +42,7 @@ public class BatataController {
     @RequestMapping(produces = { MediaType.APPLICATION_JSON_UTF8_VALUE },
                       method = RequestMethod.GET,
                       path   = "/ids/{ids}" )
-    public ResponseEntity<List<BatataDto>> getByIds(@PathVariable(value = "ids", required = true) List<Integer> ids) {
+    public ResponseEntity<List<BatataDto>> getByIds(@PathVariable(value = "ids") List<Integer> ids) {
         logger.info("Get all Batatas by ids");
         return ResponseEntity.ok(batataService.findIds(ids));
     }
@@ -50,7 +50,7 @@ public class BatataController {
     @RequestMapping(produces = { MediaType.APPLICATION_JSON_UTF8_VALUE },
             method = RequestMethod.GET,
             path   = "/type/{type}" )
-    public ResponseEntity<List<BatataDto>> getByType(@PathVariable(value = "type", required = true) String type) {
+    public ResponseEntity<List<BatataDto>> getByType(@PathVariable(value = "type") String type) {
         logger.info("Get all Batatas by type");
         return ResponseEntity.ok(batataService.findType(type));
     }
@@ -58,7 +58,7 @@ public class BatataController {
     @RequestMapping(produces = {MediaType.APPLICATION_JSON_UTF8_VALUE},
                       method = RequestMethod.GET,
                         path = "/{id}")
-    public ResponseEntity<BatataDto> getById(@PathVariable(value = "id", required = true) Integer id) {
+    public ResponseEntity<BatataDto> getById(@PathVariable(value = "id") Integer id) {
         logger.info("Get a batata by Id:" + id);
         BatataDto result = batataService.findOne(id);
 
@@ -82,9 +82,8 @@ public class BatataController {
                 consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE},
                     path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<BatataDto> update(@PathVariable(value = "id", required = true) Integer id,
-                                            @Validated
-                                            @RequestBody BatataDto batata) {
+    public ResponseEntity<BatataDto> update(@PathVariable(value = "id") Integer id,
+                                            @Validated @RequestBody BatataDto batata) {
 
         BatataDto result =  batataService.update(id, batata);
         if(result != null){
@@ -96,7 +95,7 @@ public class BatataController {
 
     @DeleteMapping(path = "/{id}",
                produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity delete(@PathVariable(value = "id", required = true) Integer id) {
+    public ResponseEntity delete(@PathVariable(value = "id") Integer id) {
         batataService.delete(id);
         return ResponseEntity.ok().build();
     }

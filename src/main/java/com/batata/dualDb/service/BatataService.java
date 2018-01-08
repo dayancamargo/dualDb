@@ -6,6 +6,7 @@ import com.batata.dualDb.repository.BatataRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,8 +21,8 @@ public class BatataService {
     private BatataRepository batataRepository;
 
     @Autowired
-    public BatataService(BatataRepository BatataRepository){
-        this.batataRepository = BatataRepository;
+    public BatataService(@Qualifier("h2TransactionManager") BatataRepository batataRepository){
+        this.batataRepository = batataRepository;
     }
 
     public BatataDto findOne(Integer id){
